@@ -1,0 +1,75 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+
+.h-screen {
+  height: 100vh;
+}
+
+.w-400 {
+  width: 400px;
+}
+
+input {
+  height: 40px;
+  border: 2px solid gray;
+  width: 100%;
+  padding-left: 20px;
+}
+
+.card {
+  border: 2px solig gray;
+  box-shadow: 0 0 2px gray;
+}
+
+.text-2xl {
+  font-size: 30px;
+}
+
+.text-xl {
+  font-size: 25px;
+}
+
+.text-lg {
+  font-size: 20px;
+}
+
+.text-md {
+  font-size: 18px;
+}
+
+.button {
+  background-color: #AC4425;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #058359;
+}
+
+i {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.spinner-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.507);
+  z-index: 10000;
+}
+
+.spinner-border {
+  color: white;
+  height: 80px;
+  width: 80px;
+}
+
