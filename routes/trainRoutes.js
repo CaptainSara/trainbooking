@@ -1,6 +1,8 @@
 const router = require("express").Router()
 const Train = require("../models/trainModel")
 
+
+//Post trains
 router.post("/add-train", async (req, res) => {
 
   try {
@@ -22,6 +24,21 @@ router.post("/add-train", async (req, res) => {
       success: false,
       message: error.message
     })
+  }
+})
+
+//get trains
+//router.get("/get-all-trains", authMiddleware, async (req, res) => {
+router.get("/get-all-trains", async (req, res) => {
+  try {
+    const trains = await Train.find()
+    return res.status(200).send({
+      success: true,
+      message: "Trains fetched successfullt",
+      data: trains,
+    })
+  } catch (error) {
+    res.status(500).send({success: flase, message: error.message})
   }
 })
 

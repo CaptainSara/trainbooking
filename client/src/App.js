@@ -6,6 +6,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Loader from "./components/Loader"
 import { useSelector } from "react-redux"
+import AddTrains from "./pages/AddTrains"
 /* import PublicRoute from "./components/PublicRoute"
 import ProtectedRoute from "./components/ProtectedRoute" */
 
@@ -21,7 +22,8 @@ function App() {
           <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/login" element={ <Login /> } />
+          <Route path="/add" element={<AddTrains/>}/>
         </Routes>
       </BrowserRouter>
     </div>

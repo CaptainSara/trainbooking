@@ -9,7 +9,7 @@ const trainSchema = new mongoose.Schema({
     type: String, 
     required: true
   },
-  /* capacity: {
+  capacity: {
     type: Number, 
     required: true
   },
@@ -48,7 +48,7 @@ const trainSchema = new mongoose.Schema({
   status: {
     type: String, 
     default: "Yet to start"
-  }, */
+  }, 
 })
 
 module.exports = mongoose.model("Train", trainSchema)
