@@ -29,7 +29,7 @@ router.post("/add-train", async (req, res) => {
 
 //get trains
 //router.get("/get-all-trains", authMiddleware, async (req, res) => {
-router.get("/get-all-trains", async (req, res) => {
+router.post("/get-all-trains", async (req, res) => {
   try {
     const trains = await Train.find()
     return res.status(200).send({
@@ -38,7 +38,21 @@ router.get("/get-all-trains", async (req, res) => {
       data: trains,
     })
   } catch (error) {
-    res.status(500).send({success: flase, message: error.message})
+    res.status(500).send({success: false, message: error.message})
+  }
+})
+
+//get train by id
+router.post("/get-train-by-id", async (req, res) => {
+  try {
+    const train = await Train.findById(req.body._id)
+    return res.status(200).send({
+      success: true,
+      message: "Train fetched successfullt",
+      data: train,
+    })
+  } catch (error) {
+    res.status(500).send({success: false, message: error.message})
   }
 })
 

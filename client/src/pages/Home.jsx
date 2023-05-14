@@ -1,12 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import "../style/layout.css"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { ShowLoading, HideLoading } from "../redux/alertsSlice"
+import { axiosInstance } from '../axiosInstance'
+import { Row, message, Col } from 'antd'
+import Train from "../components/Train"
 
 function Home() {
-  const {user} = useSelector(state => state.users)
+  const { user } = useSelector(state => state.users)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const [collapsed, setCollapsed] = React.useState(false)
+  const [trains, setTrains] = useState([])
+  
+  const getTrains = async () => {
+    try {
+      dispatch(ShowLoading())
+      const response = await axiosInstance.post("/api/trains/get-all-trains", {})
+      dispatch(HideLoading())
+      if (response.data.success) {
+        setTrains(response.data.data)
+      } else {
+        message.error(response.data.message)
+      }
+    } catch (error) {
+      dispatch(HideLoading())
+      message.error(error.message)
+    }
+  }
+
+  console.log(trains)
   
   const userMenu = [
     {
@@ -22,7 +47,7 @@ function Home() {
     {
       name: "Profile",
       path: "/profile",
-      icon: "ri-user-line" 
+      icon: "ri-user-line"
     },
     {
       name: "Logout",
@@ -33,6 +58,10 @@ function Home() {
 
   const manuToBeRendered = userMenu
   const activeRoute = window.location.pathname
+
+  useEffect(() => {
+    getTrains()
+  }, [])
   return (
     <div className='layout-parent'>
       {/* {user && <h1>Welcome {user?.name}</h1>}
@@ -69,7 +98,27 @@ function Home() {
           )}></i>)}  
         </div>
         <div className="content"></div>
+
+        <div>
+        <div>
+           
+        </div>
+        <div>
+          <Row>
+            { trains.map((train) => (
+              <Col lg={12} xs={24} sm={24}>
+                <Train train={ train } />
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
+
+
+
+      </div>
+
+      
     </div>
   )
 }

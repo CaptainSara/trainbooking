@@ -18,6 +18,7 @@ input {
 .card {
   border: 2px solig gray;
   box-shadow: 0 0 2px gray;
+  border-radius: 0 !important;
 }
 
 .text-2xl {
@@ -34,6 +35,11 @@ input {
 
 .text-md {
   font-size: 18px;
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .button {

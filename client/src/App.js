@@ -7,6 +7,7 @@ import Register from "./pages/Register"
 import Loader from "./components/Loader"
 import { useSelector } from "react-redux"
 import AddTrains from "./pages/AddTrains"
+import BookNow from "./pages/BookNow"
 /* import PublicRoute from "./components/PublicRoute"
 import ProtectedRoute from "./components/ProtectedRoute" */
 
@@ -23,7 +24,8 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={ <Login /> } />
-          <Route path="/add" element={<AddTrains/>}/>
+          <Route path="/add" element={ <AddTrains /> } />
+          <Route path="/book-now/:id" element={<BookNow/>}/>
         </Routes>
       </BrowserRouter>
     </div>
