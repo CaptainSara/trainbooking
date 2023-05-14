@@ -9,6 +9,7 @@ import SeatSelection from '../components/SeatSelection'
 
 
 function BookNow() {
+  const [selectedSeats, setSelectedSeats] = useState([])
   const params = useParams()
   const dispatch = useDispatch()
   const [train, setTrain] = useState(null)
@@ -37,7 +38,7 @@ function BookNow() {
   return (
     <div>
       { train && (
-        <Row className="mt-3">
+        <Row className="mt-3" gutter={20}>
           <Col lg={ 12 } xs={ 24 } sm={ 24 }>
             <h1 className="text-2xl text-secondary">
               <b>{ train.name }</b>
@@ -47,15 +48,27 @@ function BookNow() {
             </h1>
             <hr />
             
-            <div>
+            <div className="flex flex-col gap-1">
               <h1 className="text-lg"><b>Datum</b> : { train.journeyDate.slice(0, 10) }</h1>
               <h1 className="text-lg"><b>Pris</b> : { train.price } SEK</h1>
               <h1 className="text-lg"><b>Avgångstid</b> : { train.departure } </h1>
               <h1 className="text-lg"><b>Ankomst tid</b> : { train.arrival } </h1>
             </div>
+            <hr />
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl">
+                <b>Selected seat</b> : {selectedSeats.join(", ")}
+              </h1>
+              <h1 className="text-xl mt-2">Total kostnad: <b>{ train.price * selectedSeats.length } kr</b></h1>
+              <button className='mt-3' >Boka</button>
+          </div>
           </Col>
           <Col lg={ 12 } xs={ 24 } sm={ 24 }>
-            <SeatSelection/>
+            <SeatSelection
+              selectedSeats={ selectedSeats }
+              setSelectedSeats={ setSelectedSeats }
+              train={train}
+            />
         </Col>
       </Row>
       )}
