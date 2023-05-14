@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { ShowLoading, HideLoading } from '../redux/alertsSlice'
 import { axiosInstance } from '../axiosInstance'
-import { message, Row, Col } from 'antd'
+import { message, Row, Col, Button } from 'antd'
 import {useParams} from "react-router-dom"
 import SeatSelection from '../components/SeatSelection'
 
@@ -23,6 +23,25 @@ function BookNow() {
       dispatch(HideLoading())
       if (response.data.success) {
         setTrain(response.data.data)
+      } else {
+        message.error(response.data.message)
+      }
+    } catch (error) {
+      dispatch(HideLoading())
+      message.error(error.message)
+    }
+  }
+
+  const bookNow = async () => {
+    try {
+      dispatch(ShowLoading())
+      const response = await axiosInstance.post("/api/bookings/book-seat", {
+        train: train._id,
+        seats: selectedSeats,
+      })
+      dispatch(HideLoading())
+      if (response.data.success) {
+        message.success(response.data.message)
       } else {
         message.error(response.data.message)
       }
@@ -60,7 +79,7 @@ function BookNow() {
                 <b>Selected seat</b> : {selectedSeats.join(", ")}
               </h1>
               <h1 className="text-xl mt-2">Total kostnad: <b>{ train.price * selectedSeats.length } kr</b></h1>
-              <button className='mt-3' >Boka</button>
+              <Button className='mt-3' onClick={bookNow} >Boka</Button>
           </div>
           </Col>
           <Col lg={ 12 } xs={ 24 } sm={ 24 }>

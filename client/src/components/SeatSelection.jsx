@@ -25,6 +25,8 @@ function SeatSelection({
             let seatClass = ""
             if (selectedSeats.includes(seat + 1)) {
               seatClass = "selected-seat"
+            } else if (train.seatsBooked.includes(seat + 1))  {
+
             }
               return <Col span={ 6 }>
               <div className={`seat ${seatClass}`} onClick={() => selectOrUnselectSeats(seat+1)}>
