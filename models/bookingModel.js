@@ -3,12 +3,12 @@ const mongoose = require("mongoose")
 const bookingSchema = new mongoose.Schema({
   train: {
     type: mongoose.Schema.ObjectId,
-    ref: "Train",
+    ref: "trains",
     require: true,
   },
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: "User",
+    ref: "users",
     require: true,
   },
   seats: {

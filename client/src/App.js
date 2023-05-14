@@ -8,8 +8,6 @@ import Loader from "./components/Loader"
 import { useSelector } from "react-redux"
 import AddTrains from "./pages/AddTrains"
 import BookNow from "./pages/BookNow"
-/* import PublicRoute from "./components/PublicRoute"
-import ProtectedRoute from "./components/ProtectedRoute" */
 
 function App() {
   const {loading} = useSelector(state => state.alerts)
@@ -18,14 +16,11 @@ function App() {
       {loading && <Loader/>}
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-          <Route path="/register" element={<PublicRoute><Register/></PublicRoute>}/>
-          <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/> */}
           <Route path="/" element={<Home/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={ <Login /> } />
           <Route path="/add" element={ <AddTrains /> } />
-          <Route path="/book-now/:id" element={<BookNow/>}/>
+          <Route path="/book-now/:id" element={ <BookNow /> } />
         </Routes>
       </BrowserRouter>
     </div>

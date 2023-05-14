@@ -28,4 +28,24 @@ router.post("/book-seat", async (req, res) => {
   }
 })
 
+//get bookings by user id
+router.post("/get-bookings-by-user-id", async (req, res) => {
+  try {
+    const bookings = await Booking.find({ user: req.body.userId })
+      .populate("train")
+      .populate("user")
+    res.status(200).send({
+      message: "Booking fetched successful",
+      data: bookings,
+      success: true,
+    })
+  } catch (error) {
+    res.status(500).send({
+      message: "Booking fetch failed",
+      data: error,
+      success: false,
+    })
+  }
+})
+
 module.exports = router;
