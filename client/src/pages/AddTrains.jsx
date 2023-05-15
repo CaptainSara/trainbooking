@@ -30,7 +30,7 @@ function AddTrains({ type = "add" }) {
   }
   return (
     <div>
-      <h1>Add Buss Form</h1>
+      <h1>Add Train Form</h1>
       <Form layout='vertical' onFinish={ onFinish}>
         <Row gutter={[10,10]}>
           <Col lg={24} xs={24}>
